@@ -7,3 +7,9 @@
 .translate-from {
   margin: 20px 0;
 }
+.see-more {
+  margin-top: 20px;
+}
+#translate-sentence li {
+  margin-left: 15px;
+}
