@@ -61,12 +61,24 @@ function translateWords() {
       ul.appendChild(li)
     })
 
-    // 显示查看更多按钮
-    let seeMore = document.getElementById('js-is-show-detail')
-    seeMore.style.opacity = 1
-
     // 查看明细
     seeMoreDetail()
+    document.getElementById('js-is-show-detail').style.opacity = 1
+
+    // 获取音频，英文翻译成中文才有，中文翻译英文接口没有
+    document.getElementById('js-voice-wrapper').style.display = 'none'
+    if (from.trim() === EN) {
+      document.getElementById('js-voice-wrapper').style.display = 'block'
+      let amVoiceUrl = res.data.content.ph_am_mp3
+      let enVoiceUrl = res.data.content.ph_en_mp3
+      let amVoice = document.getElementById('word-am-voice')
+      amVoice.src = amVoiceUrl
+      let enVoice = document.getElementById('word-en-voice')
+      enVoice.src = enVoiceUrl
+      document.getElementById('am-voice').addEventListener('click', () => amVoice.play())
+      document.getElementById('en-voice').addEventListener('click', () => enVoice.play())
+    }
+    
   })
 }
 
@@ -84,9 +96,17 @@ function seeMoreDetail() {
       if (sentences) {
         sentences.forEach(sen => {
           let li = document.createElement('li')
-          let div1 = document.createElement('div')
-          div1.innerText = sen.Network_en
-          li.appendChild(div1)
+          let span1 = document.createElement('span')
+          let audio = document.createElement('audio')
+          let img = document.createElement('img')
+          audio.src = sen.tts_mp3
+          img.src = './src/assets/img/voice.svg'
+          img.className = 'voice-img'
+          img.addEventListener('click', () => audio.play())
+          span1.innerText = sen.Network_en
+          li.appendChild(span1)
+          li.appendChild(audio)
+          li.appendChild(img)
           let div2 = document.createElement('div')
           div2.innerText = sen.Network_cn
           li.appendChild(div2)

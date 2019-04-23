@@ -4,7 +4,7 @@
 
 .container {
   height: 80vh;
-  margin: 50px;
+  margin: 50px auto;
   position: relative;
 }
 .translate-from {
@@ -22,4 +22,14 @@
   position: absolute;
   bottom: 0;
   right: 0;
+}
+.voice-wrapper {
+  margin: 10px 0; 
+}
+.voice-img {
+  width: 20px;
+  height: 20px;
+}
+.voice-img:hover {
+  cursor: pointer;
 }
