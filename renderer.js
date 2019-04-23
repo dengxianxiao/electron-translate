@@ -104,10 +104,12 @@ function addVocabulary() {
   if (currentWord && currentTranslate) {
     let obj = {}
     obj[currentWord] = currentTranslate
-    let a = writeVocabulary(obj)
-    console.log(a)
-    // .then(res => {
-    //   alert('添加成功')
-    // })
+    writeVocabulary(obj).then(res => {
+      if (res === 1) {
+        alert('添加成功')
+      } else if (res === 2) {
+        alert('该单词已经在单词本中了')
+      }
+    })
   }
 }

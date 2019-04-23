@@ -15,7 +15,7 @@ const fs = require('fs')
       if (data) {
         data = JSON.parse(data)
         if (Object.keys(data).includes(Object.keys(word)[0])) {
-          resolve(2)
+          resolve(2) // 单词本已经存在该单词
         }
       }
       // 将数据写入文件
@@ -23,7 +23,7 @@ const fs = require('fs')
         if (err) {
           throw err
         }
-        resolve(1)
+        resolve(1) // 添加成功
       })
     })
   })
